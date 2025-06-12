@@ -1,5 +1,4 @@
 import subprocess
-from faker import Faker
 import platform
 import os
 
@@ -39,9 +38,9 @@ def __install_lib(libname: str):
 			subprocess.check_call(__join(__call_pip_linux_package_manager(), "faker"))
 		except Exception as ignore:
 			print("Cant install 'Faker' lib")
+			sys.exit(1)
 
 import sys
-fake = Faker()
 
 # Check if here isn't Faker library
 try:
@@ -51,7 +50,12 @@ except Exception as ignore:
 	inst = input("Install it automatically(Yes/No)?: ")
 	if inst.lower() == "y" or inst.lower() == "yes":
 		__install_lib("Faker")
+	else:
+		print("bye")
+		sys.exit(1)
 DEFAULT_COL = 50
+
+fake = Faker()
 
 def safeParseInt(s: str):
 	i = -1
